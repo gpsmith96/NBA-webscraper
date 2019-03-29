@@ -3,7 +3,7 @@ from selenium import webdriver
 import json
 import time
 
-browser = webdriver.Chrome("C:/Users/Graham Smith/software/chromedriver.exe")
+browser = webdriver.PhantomJS("C:/Users/Graham/software ws/phantomjs-2.1.1-windows/bin/phantomjs.exe")
 
 url = 'https://ca.global.nba.com/scores/?_ga=2.41354277.626674850.1553839244-663800549.1539826533'
 browser.get(url)
@@ -17,8 +17,8 @@ while True:
 	}
 	for game in content.findAll('table', attrs={"class": "final-game-table"}):
 		gameObject = {
-			"awayScore": game.findAll('td', attrs={"class": "final-score"})[0].text,
-			"homeScore": game.findAll('td', attrs={"class": "final-score"})[1].text,
+			"awayScore": int(game.findAll('td', attrs={"class": "final-score"})[0].text),
+			"homeScore": int(game.findAll('td', attrs={"class": "final-score"})[1].text),
 			"awayTeam": game.findAll('td', attrs={"class": "team-abbrv"})[0].find('a').text,
 			"homeTeam": game.findAll('td', attrs={"class": "team-abbrv"})[1].find('a').text,
 		}
