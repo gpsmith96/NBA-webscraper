@@ -3,8 +3,12 @@ from selenium import webdriver
 import json
 import time
 
-browser = webdriver.PhantomJS("C:/Users/Graham/software ws/phantomjs-2.1.1-windows/bin/phantomjs.exe")
 
+chromeOptions = webdriver.ChromeOptions()
+#chromeOptions.binary_location = 'C:/Users/Graham Smith/software/chromedriver.exe'
+chromeOptions.add_argument('--headless')
+
+browser = webdriver.Chrome(options = chromeOptions)
 url = 'https://ca.global.nba.com/scores/?_ga=2.41354277.626674850.1553839244-663800549.1539826533'
 browser.get(url)
 dataArr = []
